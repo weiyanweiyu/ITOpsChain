@@ -1,0 +1,23 @@
+{
+  "name": "ITOps-Blockchain",
+  "version": "0.0.1",
+  "description": "Node.js program using NodeSdk Apis",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "keywords": [
+    "Blockchain"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/umasuthanramakrishnan/ITOpsChain.git"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "hfc": "^0.6.5"
+  }
+}
