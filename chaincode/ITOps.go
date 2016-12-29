@@ -47,9 +47,25 @@ func (self *ITOpsChaincode) Invoke(stub shim.ChaincodeStubInterface, function st
 		return nil, errors.New("[ITOpsChaincode]: Invoke - Function name not specified")
 	}
 
+	result := ""
 	// Handle different functions
 	if function == "addIncident" {
-		self.addIncident(stub, args[0])
+		success, err := self.addIncident(stub, args[0])
+		if (success) {
+			result = "success"
+		} else {
+			result = "failure"
+		}
+		if (err != nil) {
+			result = "failure"
+		}
+	} else if function == "getIncident" {
+		incidentRecord, err := self.getIncident(stub, args[0])
+		if (err == nil) {
+			result = incidentRecord
+		} else {
+			result = "failure"
+		}
 	} else if function == "updateIncident" {
 		self.updateIncident(stub, args[0])
 	} else {
@@ -58,7 +74,7 @@ func (self *ITOpsChaincode) Invoke(stub shim.ChaincodeStubInterface, function st
 
 	fmt.Println("[ITOpsChaincode]: Invoke - End")
 
-	return nil, nil
+	return []byte(result), nil
 }
 
 func (self *ITOpsChaincode) Query(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error){

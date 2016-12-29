@@ -19,7 +19,7 @@ var util = require('util');
 
 // Create a client chain.
 // The name can be anything as it is only used internally.
-var chain = hfc.newChain("chaincode");
+var chain = hfc.newChain("itopschain");
 
 // Configure the KeyValStore which is used to store sensitive keys
 // as so it is important to secure this storage.
@@ -42,7 +42,7 @@ chain.setDevMode(false);
 
 
 // Path to the local directory containing the chaincode project under $GOPATH
-var testChaincodePath = "github.com/ibm/itops/";
+var testChaincodePath = "github.com/ITOpsChain/chaincode/";
 //var testChaincodePath = "chaincode_example02/";
 
 // Chaincode hash that will be filled in by the deployment operation or
@@ -98,7 +98,7 @@ function querysample() {
       var fcn = "getIncident";
       var args = ["0001"];
       var user = test_user_Member1;
-      var chaincodeID = "73e6fb2319276b4aca8643965b6a135fd2d036ddd37344ca3d6eff6b562c2d53";
+      var chaincodeID = "57d3d3a1f3f51e90bb07089ad5df44153e54ec2d7471a0a5db0f913ddb09cf7e";
 
       // Issue an invoke request
       var queryRequest = {
@@ -128,10 +128,10 @@ function querysample() {
 
 function invokesample() {
       var fcn = "addIncident";
-      var args = ["0002", "{\"incidentID\":\"0002\",\"incidentTitle\":\"Sample Incident 2\",\"incidentType\":\"Issue\",\"severity\":\"2\",\"status\":\"new\",\"refIncidentID\":\"\",\"originalIncidentIDd\":\"0001\",\"participantIDFrom\":\"\",\"participantIDTo\":\"\",\"contactEmail\":\"\",\"createdDate\":\"\",\"expectedCloseDate\":\"\",\"actualCloseDate\":\"\"}"];
+      var args = ["0001", "{\"incidentID\":\"0001\",\"incidentTitle\":\"Sample Incident 1\",\"incidentType\":\"Issue\",\"severity\":\"2\",\"status\":\"new\",\"refIncidentID\":\"\",\"originalIncidentIDd\":\"0001\",\"participantIDFrom\":\"\",\"participantIDTo\":\"\",\"contactEmail\":\"\",\"createdDate\":\"\",\"expectedCloseDate\":\"\",\"actualCloseDate\":\"\"}"];
       var user = test_user_Member1;
-      var chaincodeID = "73e6fb2319276b4aca8643965b6a135fd2d036ddd37344ca3d6eff6b562c2d53";
-      //var chaincodeID = "73e6fb2319276b4aca8643965b6a135fd2d036ddd37344ca3d6eff6b562c2d54";
+      var chaincodeID = "57d3d3a1f3f51e90bb07089ad5df44153e54ec2d7471a0a5db0f913ddb09cf7e";
+
       // Issue an invoke request
       var invokeRequest = {
         // Name (hash) required for invoke
@@ -178,9 +178,9 @@ chain.enroll("test_user1", "jGlNl6ImkuDo", function(err, user) {
 
    test_user_Member1 = user;
 
-   deploysample();
+   //deploysample();
    //invokesample();
-   //querysample();
+   querysample();
    //setTimeout(function() { invokesample(); }, 5000);
    //setTimeout(function() { querysample(); }, 15000);
 });
